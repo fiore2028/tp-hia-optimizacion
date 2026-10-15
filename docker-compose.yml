@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  # Servidor de Base de Datos PostgreSQL
+  db:
+    image: postgres:15
+    container_name: postgres_tp
+    restart: always
+    environment:
+      POSTGRES_USER: 'postgres'
+      POSTGRES_PASSWORD: postgrespassword
+      POSTGRES_DB: hotel_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  # Interfaz gráfica Adminer
+  adminer:
+    image: adminer
+    container_name: adminer_tp
+    restart: always
+    ports:
+      - "8080:8080"
+
+volumes:
+  postgres_data:
